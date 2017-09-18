@@ -34,7 +34,10 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
         // Add SearchBar to the NavigationBar
         searchBar.sizeToFit()
         navigationItem.titleView = searchBar
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadSettings()
         // Perform the first search when the view controller first loads
         doSearch()
     }
@@ -87,11 +90,10 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationViewController = segue.destination as! SettingsViewController
-
-        //destinationViewController.mMovie = mMovies[indexPath.row] as! [String : Any]
-       
+    func loadSettings() {
+        let defaults = UserDefaults.standard
+        let v = defaults.float(forKey: Utility.KEY_STARS_SETTING)
+        searchSettings.minStars = Int(v)
     }
 }
 

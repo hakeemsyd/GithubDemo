@@ -18,7 +18,7 @@ class SettingsViewController: UIViewController {
         let defaults = UserDefaults.standard
         let prevValue = defaults.float(forKey: Utility.KEY_STARS_SETTING)
         starsSlider.setValue(prevValue, animated: true)
-        currentValueView.text = "\(prevValue)"
+        currentValueView.text = "\(Int(prevValue))"
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,7 +30,7 @@ class SettingsViewController: UIViewController {
     }
 
     @IBAction func onSilderChanged(_ sender: UISlider, forEvent event: UIEvent) {
-        currentValueView.text = "\(sender.value)"
+        currentValueView.text = "\(Int(sender.value))"
     }
     
     @IBAction func onSave(_ sender: UIButton) {
