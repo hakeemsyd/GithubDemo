@@ -10,21 +10,36 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet weak var currentValueView: UILabel!
+    @IBOutlet weak var starsSlider: UISlider!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let defaults = UserDefaults.standard
+        let prevValue = defaults.float(forKey: Utility.KEY_STARS_SETTING)
+        starsSlider.setValue(prevValue, animated: true)
+        currentValueView.text = "\(prevValue)"
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func onClose(_ sender: Any, forEvent event: UIEvent) {
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func onSilderChanged(_ sender: UISlider, forEvent event: UIEvent) {
+        currentValueView.text = "\(sender.value)"
+    }
+    
+    @IBAction func onSave(_ sender: UIButton) {
+        let defaults = UserDefaults.standard
+        defaults.set(starsSlider.value, forKey: Utility.KEY_STARS_SETTING)
+        defaults.synchronize()
+        dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
