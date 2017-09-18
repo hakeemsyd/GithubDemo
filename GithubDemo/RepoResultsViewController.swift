@@ -86,6 +86,13 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
         Utility.loadPhoto(withUrl: repos[indexPath.row].ownerAvatarURL!, into: cell.displayImage)
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationViewController = segue.destination as! SettingsViewController
+
+        //destinationViewController.mMovie = mMovies[indexPath.row] as! [String : Any]
+       
+    }
 }
 
 // SearchBar methods

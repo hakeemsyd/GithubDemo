@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2F42CA4E3F3642740EC8E298 /* Pods_GithubDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C31B77F051ECB4734B31A292 /* Pods_GithubDemoTests.framework */; };
+		320ADC961F6F7CF7004DA96D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320ADC951F6F7CF7004DA96D /* SettingsViewController.swift */; };
 		328C73891F6E25AC0063A28E /* GithubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C73881F6E25AC0063A28E /* GithubCell.swift */; };
 		328C738B1F6E353D0063A28E /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328C738A1F6E353D0063A28E /* Utility.swift */; };
 		36A23BF265A8B5DD8B47C248 /* Pods_GithubDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5972B058EEC9499B05D1F930 /* Pods_GithubDemo.framework */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		1E529DFE5EFBC22A0ECE209C /* Pods-GithubDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GithubDemoTests/Pods-GithubDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		320ADC951F6F7CF7004DA96D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		328C73881F6E25AC0063A28E /* GithubCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubCell.swift; sourceTree = "<group>"; };
 		328C738A1F6E353D0063A28E /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		34CBA2B0A0E031A1D298899E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,7 @@
 				6B2DDEEB1B02911A00D25281 /* Supporting Files */,
 				328C73881F6E25AC0063A28E /* GithubCell.swift */,
 				328C738A1F6E353D0063A28E /* Utility.swift */,
+				320ADC951F6F7CF7004DA96D /* SettingsViewController.swift */,
 			);
 			path = GithubDemo;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 			files = (
 				6B2DDEF01B02911A00D25281 /* RepoResultsViewController.swift in Sources */,
 				328C73891F6E25AC0063A28E /* GithubCell.swift in Sources */,
+				320ADC961F6F7CF7004DA96D /* SettingsViewController.swift in Sources */,
 				328C738B1F6E353D0063A28E /* Utility.swift in Sources */,
 				6B9F8B0A1B02B8E5001483E7 /* GithubRepoSearchSettings.swift in Sources */,
 				6B2DDEEE1B02911A00D25281 /* AppDelegate.swift in Sources */,
