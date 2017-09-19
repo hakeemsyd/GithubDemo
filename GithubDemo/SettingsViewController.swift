@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SettingCellDelegate{
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var currentValueView: UILabel!
@@ -65,6 +65,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let item = langs[indexPath.row]
         cell.langLabelView.text = item.name
         cell.langToggleView.isOn = item.val
+        cell.delegate = self
         return cell
     }
     
@@ -75,6 +76,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             tableView.isHidden = false
         }
         return langs.count
+    }
+    
+    func settingSwitchChanged(settingCell: SettingCell, switchIsOn: Bool) {
+        
+        print( "\(switchIsOn)")
     }
     
     /*

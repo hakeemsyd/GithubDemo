@@ -95,6 +95,10 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
         let v = defaults.float(forKey: Utility.KEY_STARS_SETTING)
         searchSettings.minStars = Int(v)
     }
+    
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        <#code#>
+    }*/
 }
 
 // SearchBar methods
