@@ -13,6 +13,7 @@ import Foundation
 struct Utility {
 
     static let KEY_STARS_SETTING = "minimum_stars";
+    static let KEY_LANG_PREF = "language_prefs";
     static func loadPhoto(withUrl url: String, into view: UIImageView){
         if let u = URL(string: url) {
             let imageRequest = URLRequest(url: u)

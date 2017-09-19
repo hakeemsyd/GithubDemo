@@ -80,6 +80,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func settingSwitchChanged(settingCell: SettingCell, switchIsOn: Bool) {
         print( "\(settingCell.langLabelView.text ??  "Unknown"):\(switchIsOn)")
+        let defaults = UserDefaults.standard
+        var prefDict = defaults.dictionary(forKey: Utility.KEY_LANG_PREF) ?? [String:Bool]()
+        prefDict[settingCell.langLabelView.text!] = switchIsOn
+        defaults.set(prefDict, forKey: Utility.KEY_LANG_PREF)
+        defaults.synchronize()
     }
     
     /*
