@@ -8,17 +8,24 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var currentValueView: UILabel!
     @IBOutlet weak var starsSlider: UISlider!
-    
+    var langs: [(name: String, val: Bool)] = [(name: String, val: Bool)]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let defaults = UserDefaults.standard
         let prevValue = defaults.float(forKey: Utility.KEY_STARS_SETTING)
         starsSlider.setValue(prevValue, animated: true)
         currentValueView.text = "\(Int(prevValue))"
+        langs.append((name: "C++", val: true))
+        langs.append((name: "Swift", val: false))
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,6 +45,36 @@ class SettingsViewController: UIViewController {
         defaults.set(starsSlider.value, forKey: Utility.KEY_STARS_SETTING)
         defaults.synchronize()
         dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Languages"
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "lang", for: indexPath)
+            as? SettingCell else {
+            return UITableViewCell()
+        }
+        
+        let item = langs[indexPath.row]
+        cell.langLabelView.text = item.name
+        cell.langToggleView.isOn = item.val
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(langs.count <= 0){
+            tableView.isHidden = true
+        } else {
+            tableView.isHidden = false
+        }
+        return langs.count
     }
     
     /*
