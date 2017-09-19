@@ -79,8 +79,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func settingSwitchChanged(settingCell: SettingCell, switchIsOn: Bool) {
-        
-        print( "\(switchIsOn)")
+        print( "\(settingCell.langLabelView.text ??  "Unknown"):\(switchIsOn)")
     }
     
     /*
