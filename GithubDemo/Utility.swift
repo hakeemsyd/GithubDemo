@@ -12,6 +12,7 @@ import Foundation
 
 struct Utility {
 
+    static let keys: [String] = ["Filter by language?", "Java", "Objective-C", "Javascript", "Python", "Ruby", "Swift"]
     static let KEY_STARS_SETTING = "minimum_stars";
     static let KEY_LANG_PREF = "language_prefs";
     static func loadPhoto(withUrl url: String, into view: UIImageView){

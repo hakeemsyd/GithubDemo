@@ -13,7 +13,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var currentValueView: UILabel!
     @IBOutlet weak var starsSlider: UISlider!
-    var keys: [String] = ["Filter by language?", "Java", "Objective-C", "Javascript", "Python", "Ruby", "Swift"]
     var langs: [String: Bool] = ["Filter by language?": false, "Java" : false, "Objective-C":false, "Javascript":false, "Python":false, "Ruby":false, "Swift":false]
 
     override func viewDidLoad() {
@@ -65,8 +64,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             return UITableViewCell()
         }
         
-        cell.langLabelView.text = keys[indexPath.row]
-        cell.langToggleView.isOn = langs[keys[indexPath.row]]!
+        cell.langLabelView.text = Utility.keys[indexPath.row]
+        cell.langToggleView.isOn = langs[Utility.keys[indexPath.row]]!
         cell.delegate = self
         cell.cellIdx = indexPath.row
         return cell
@@ -80,7 +79,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             tableView.isHidden = false
         }
         //return section == 0 ? 1 : langs.count
-        if(langs[keys[0]] == false){
+        if(langs[Utility.keys[0]] == false){
             return 1
         }
         
@@ -89,7 +88,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func settingSwitchChanged(settingCell: SettingCell, switchIsOn: Bool) {
         print( "\(settingCell.langLabelView.text ??  "Unknown"):\(switchIsOn)")
-        let k = keys[settingCell.cellIdx]
+        let k = Utility.keys[settingCell.cellIdx]
         langs[k] = switchIsOn
         
         var rows = [IndexPath]()
