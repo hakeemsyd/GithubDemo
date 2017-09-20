@@ -13,16 +13,19 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var currentValueView: UILabel!
     @IBOutlet weak var starsSlider: UISlider!
-    var langs: [(name: String, val: Bool)] = [(name: String, val: Bool)]()
+    var keys: [String] = ["Java", "Objective-C", "Javascript", "Python", "Ruby", "Swift"]
+    var langs: [String: Bool] = ["Java" : false, "Objective-C":false, "Javascript":false, "Python":false, "Ruby":false, "Swift":false]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let defaults = UserDefaults.standard
         let prevValue = defaults.float(forKey: Utility.KEY_STARS_SETTING)
+        if let prevDict = defaults.dictionary(forKey: Utility.KEY_LANG_PREF) as! [String:Bool]?{
+            langs = prevDict
+        }
+        //keys = langs.allKeys as! [String]
         starsSlider.setValue(prevValue, animated: true)
         currentValueView.text = "\(Int(prevValue))"
-        langs.append((name: "C++", val: true))
-        langs.append((name: "Swift", val: false))
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
@@ -43,6 +46,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func onSave(_ sender: UIButton) {
         let defaults = UserDefaults.standard
         defaults.set(starsSlider.value, forKey: Utility.KEY_STARS_SETTING)
+        defaults.setValue(langs, forKey: Utility.KEY_LANG_PREF)
         defaults.synchronize()
         dismiss(animated: true, completion: nil)
     }
@@ -62,10 +66,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             return UITableViewCell()
         }
         
-        let item = langs[indexPath.row]
-        cell.langLabelView.text = item.name
-        cell.langToggleView.isOn = item.val
+        cell.langLabelView.text = keys[indexPath.row]
+        cell.langToggleView.isOn = langs[keys[indexPath.row]]!
         cell.delegate = self
+        cell.cellIdx = indexPath.row
         return cell
     }
     
@@ -80,21 +84,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func settingSwitchChanged(settingCell: SettingCell, switchIsOn: Bool) {
         print( "\(settingCell.langLabelView.text ??  "Unknown"):\(switchIsOn)")
-        let defaults = UserDefaults.standard
-        var prefDict = defaults.dictionary(forKey: Utility.KEY_LANG_PREF) ?? [String:Bool]()
-        prefDict[settingCell.langLabelView.text!] = switchIsOn
-        defaults.set(prefDict, forKey: Utility.KEY_LANG_PREF)
-        defaults.synchronize()
+        let k = keys[settingCell.cellIdx]
+        langs[k] = switchIsOn
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

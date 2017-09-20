@@ -20,6 +20,7 @@ class SettingCell: UITableViewCell {
     @IBOutlet weak var langToggleView: UISwitch!
     @IBOutlet weak var langLabelView: UILabel!
     weak var delegate: SettingCellDelegate?
+    var cellIdx = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
