@@ -13,8 +13,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var currentValueView: UILabel!
     @IBOutlet weak var starsSlider: UISlider!
-    var keys: [String] = ["Java", "Objective-C", "Javascript", "Python", "Ruby", "Swift"]
-    var langs: [String: Bool] = ["Java" : false, "Objective-C":false, "Javascript":false, "Python":false, "Ruby":false, "Swift":false]
+    var keys: [String] = ["Filter by language?", "Java", "Objective-C", "Javascript", "Python", "Ruby", "Swift"]
+    var langs: [String: Bool] = ["Filter by language?": false, "Java" : false, "Objective-C":false, "Javascript":false, "Python":false, "Ruby":false, "Swift":false]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.reloadData()
     }
 
+    /*func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }*/
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -51,14 +55,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         dismiss(animated: true, completion: nil)
     }
     
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    /*func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Languages"
-    }
+    }*/
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "lang", for: indexPath)
@@ -73,12 +72,18 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(langs.count <= 0){
             tableView.isHidden = true
         } else {
             tableView.isHidden = false
         }
+        //return section == 0 ? 1 : langs.count
+        if(langs[keys[0]] == false){
+            return 1
+        }
+        
         return langs.count
     }
     
@@ -86,5 +91,19 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         print( "\(settingCell.langLabelView.text ??  "Unknown"):\(switchIsOn)")
         let k = keys[settingCell.cellIdx]
         langs[k] = switchIsOn
+        
+        var rows = [IndexPath]()
+        for index in 1...langs.count - 2 {
+            rows.append(IndexPath(row: index, section: 0))
+        }
+        if(settingCell.cellIdx == 0){
+            if(switchIsOn){
+                tableView.reloadData()
+            } else {
+                tableView.reloadData()
+                //tableView.reloadRows(at: rows, with: UITableViewRowAnimation.top)
+            }
+            
+        }
     }
 }

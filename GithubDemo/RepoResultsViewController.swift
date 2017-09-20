@@ -94,6 +94,8 @@ class RepoResultsViewController: UIViewController, UITableViewDataSource, UITabl
         let defaults = UserDefaults.standard
         let v = defaults.float(forKey: Utility.KEY_STARS_SETTING)
         searchSettings.minStars = Int(v)
+        
+        let languages = defaults.dictionary(forKey: Utility.KEY_LANG_PREF)
     }
     
     /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
