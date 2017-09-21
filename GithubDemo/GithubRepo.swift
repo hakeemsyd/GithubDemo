@@ -89,6 +89,9 @@ class GithubRepo: CustomStringConvertible {
             q = q + searchString
         }
         q = q + " stars:>\(settings.minStars)"
+        if(settings.filterLangs.count > 0){
+            q = q + " language:\(settings.filterLangs.joined(separator: ","))"
+        }
         params["q"] = q
         
         params["sort"] = "stars"
